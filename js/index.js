@@ -8,7 +8,9 @@ $(document).ready(function() {
 
     function onGameSelected(aElement) {
         var aGameIframe = $('#game_iframe');
-        aGameIframe.attr("src", aElement.attr('game-url'));
+        //Write the correct portal param on the url
+        var game_url = aElement.attr('game-url').replace("portal=osom", "portal=" + Tools.getQueryString('portal', 'osom'));
+        aGameIframe.attr("src", game_url);
 
         $(document).scrollTop(0);
 
