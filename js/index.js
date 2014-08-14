@@ -10,6 +10,8 @@ $(document).ready(function(){
         var aGameIframe = $('#game_iframe');
         aGameIframe.attr("src", aElement.attr('game-url'));
 
+        $(document).scrollTop( 0 );
+
         if(mFirstGameLoad == false){
             mFirstGameLoad = true;
             aGameIframe.animate({height:640}, 500);
