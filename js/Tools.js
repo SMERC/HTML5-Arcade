@@ -201,3 +201,17 @@ Tools.addTouchEvents = function(aDomObject, aOnStationaryClick, aData)
 Tools.removeTouchEvents = function(aDomObject){
     if(Environment.TARGET == E_Target.COMPUTER){ aDomObject.off('mousedown'); }else{ aDomObject.unbind('touchstart'); }
 };
+
+Tools.getQueryString = function(key, default_) {
+    if (default_ == null) {
+      default_ = ""
+    }
+    key = key.replace(/[[]/, "[").replace(/[]]/, "]");
+    var regex = new RegExp("[?&]" + key + "=([^&#]*)");
+    var qs = regex.exec(window.location.href);
+    if (qs == null) {
+      return default_
+    } else {
+      return qs[1]
+    }
+};
