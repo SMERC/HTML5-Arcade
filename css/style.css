@@ -10,6 +10,12 @@ p, div {
     font-family: 'Open sans';
 }
 
+.scrollable {
+    height:100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
 .game-item {
     margin-bottom: 25px;
 }
@@ -54,3 +60,24 @@ footer {
 }
 .game_iframe { width:100%; height:0px; max-width: 1136px; margin: 0px; padding:0px; border:0px; border-bottom: 30px; overflow: hidden;}
 .game_iframe_container { padding-left: 0px; padding-right: 0px;}
+
+//Scrollbars Chrome (we cant modify them of firefox)
+::-webkit-scrollbar { width: 5px; height: 3px;}
+::-webkit-scrollbar-button {  background-color: #E6E6E6; }
+::-webkit-scrollbar-track {  background-color: #E6E6E6;}
+::-webkit-scrollbar-track-piece { background-color: #ffffff;}
+::-webkit-scrollbar-thumb { height: 50px; background-color: #E6E6E6; border-radius: 3px;}
+::-webkit-scrollbar-corner { background-color: #E6E6E6;}
+::-webkit-resizer { background-color: #E6E6E6;}
+
+//Scrollbars IE
+body{
+  scrollbar-base-color: #C0C0C0;
+  scrollbar-base-color: #C0C0C0;
+  scrollbar-3dlight-color: #C0C0C0;
+  scrollbar-highlight-color: #C0C0C0;
+  scrollbar-track-color: #EBEBEB;
+  scrollbar-arrow-color: black;
+  scrollbar-shadow-color: #C0C0C0;
+  scrollbar-dark-shadow-color: #C0C0C0;
+}
