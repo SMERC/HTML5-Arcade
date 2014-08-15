@@ -262,9 +262,12 @@ $(document).ready(function() {
     }
 
     function loadLogo() {
-        var portal = Tools.getQueryString('portal', '@demo');
-        var logo_path = 'https://s3.amazonaws.com/gcn-static-assets/uploaded/assets/portal/' + portal + '.png';
-        document.getElementById('portal-logo').src = logo_path;
+        var logo = document.getElementById('portal-logo');
+        if (logo) {
+            var portal = Tools.getQueryString('portal', '@demo');
+            var logo_path = 'https://s3.amazonaws.com/gcn-static-assets/uploaded/assets/portal/' + portal + '.png';
+            logo.src = logo_path;
+        }
     }
 
     var aSelectableGames = $('.selectable_game');
