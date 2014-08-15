@@ -26,7 +26,7 @@ footer {
 
 .img-item {
     //border-radius: 2px;
-    border-color: #c6cfd4;
+    border-color: #F5F3F3;
     border-style: solid;
     border-width: 2px 2px 0;
     cursor: pointer;
@@ -34,7 +34,7 @@ footer {
 
 .desc-item{
     //border-radius: 2px;
-    border:2px solid #c6cfd4;
+    border:2px solid #F5F3F3;
     max-width:335px;
     min-height: 94px;
     padding:0 10px;
@@ -62,20 +62,20 @@ footer {
 .navbar {
     background-color: #FFFFFF;
     border-bottom-width: 2px;
-    border-color: #E6E6E6;
+    border-color: #F5F3F3;
     min-height: 67px;
 }
-.game_iframe { width:100%; height:0px; max-width: 1136px; margin: 0px; padding:0px; border:0px; border-bottom: 30px; overflow: hidden;}
+.game_iframe { width:100%; height:0px; max-width: 1136px; max-height:560px; margin: 0px; padding:0px; border:0px; border-bottom: 30px; overflow: hidden;}
 .game_iframe_container { padding-left: 0px; padding-right: 0px;}
 
 //Scrollbars Chrome (we cant modify them of firefox)
-::-webkit-scrollbar { width: 5px; height: 3px;}
-::-webkit-scrollbar-button {  background-color: #E6E6E6; }
-::-webkit-scrollbar-track {  background-color: #E6E6E6;}
+::-webkit-scrollbar { width: 3px; height: 3px;}
+::-webkit-scrollbar-button {  background-color: #F5F3F3; }
+::-webkit-scrollbar-track {  background-color: #F5F3F3;}
 ::-webkit-scrollbar-track-piece { background-color: #ffffff;}
-::-webkit-scrollbar-thumb { height: 50px; background-color: #E6E6E6; border-radius: 3px;}
-::-webkit-scrollbar-corner { background-color: #E6E6E6;}
-::-webkit-resizer { background-color: #E6E6E6;}
+::-webkit-scrollbar-thumb { height: 50px; background-color: #F5F3F3; border-radius: 3px;}
+::-webkit-scrollbar-corner { background-color: #F5F3F3;}
+::-webkit-resizer { background-color: #F5F3F3;}
 
 //Scrollbars IE
 body{
