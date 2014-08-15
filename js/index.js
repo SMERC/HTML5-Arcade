@@ -236,8 +236,22 @@ $(document).ready(function() {
 
         if (mFirstGameLoad == false) {
             mFirstGameLoad = true;
-            aGameIframe.animate({height: 640}, 500);
+            var aWidth = aGameIframe.width();
+
+            var aWidthPercent = (aWidth * 100) / 1136;
+            var aHeight = (aWidthPercent * 640) / 100;
+
+            aGameIframe.animate({height: aHeight}, 500);
         }
+
+        aGameIframe.resize(function(){
+            var aWidth = aGameIframe.width();
+
+            var aWidthPercent = (aWidth * 100) / 1136;
+            var aHeight = (aWidthPercent * 640) / 100;
+
+            aGameIframe.css("height", aHeight);
+        });
     }
 
     function loadLogo() {
