@@ -226,6 +226,9 @@ $(document).ready(function() {
 
     var mFirstGameLoad = false;
 
+    var aBodyHeight = $('body').height();
+    $('#grid').css("height", aBodyHeight);
+
     function onGameSelected(aElement) {
         var aGameIframe = $('#game_iframe');
         //Write the correct portal param on the url
@@ -242,6 +245,10 @@ $(document).ready(function() {
             var aHeight = (aWidthPercent * 640) / 100;
 
             aGameIframe.animate({height: aHeight}, 500);
+
+            var aNewGridHeight = aBodyHeight - aHeight;
+
+            $('#grid').css("height", aNewGridHeight);
         }
 
         aGameIframe.resize(function(){
