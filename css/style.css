@@ -50,8 +50,13 @@ footer {
 }
 
 .title-item {
+    font-size: 1em;
     font-weight: bold;
     color: #4C4C4C;
+}
+
+.subtitle-item {
+    font-size: 0.8em;
 }
 
 .navbar {
