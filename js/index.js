@@ -216,6 +216,11 @@ Tools.getQueryString = function(key, default_) {
     }
 };
 
+Tools.getParentUrl = function() {
+	var url = (window.location != window.parent.location) ? document.referrer: document.location;
+	return url;
+}
+
 
 
 /**
