@@ -210,7 +210,8 @@ Tools.getQueryString = function(key, default_) {
     var regex = new RegExp("[?&]" + key + "=([^&#]*)");
     var qs = regex.exec(window.location.href);
     if (qs == null) {
-      return default_
+      var qs2 = regex.exec(Tools.getParentUrl());
+      return qs2 == null ? default_ : qs2[1];
     } else {
       return qs[1]
     }
@@ -219,8 +220,7 @@ Tools.getQueryString = function(key, default_) {
 Tools.getParentUrl = function() {
 	var url = (window.location != window.parent.location) ? document.referrer: document.location;
 	return url;
-}
-
+};
 
 
 /**
