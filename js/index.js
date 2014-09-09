@@ -264,7 +264,7 @@ $(document).ready(function() {
     	    //Get any url game
     	    var url = $($('.selectable_game')[0]).attr('game-url')
     	    	.replace("portal=osom", "portal=" + Tools.getQueryString('portal', 'osom'))
-    	    	.replace(/Game\/.*/, "/Game/" + game_id);
+    	    	.replace(/Game\/.*/, "Game/" + game_id);
     	    	
     	    var level_id = Tools.getQueryString('level_id', '');
     	    if (level_id) {
