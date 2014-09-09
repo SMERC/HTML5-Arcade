@@ -210,12 +210,17 @@ Tools.getQueryString = function(key, default_) {
     var regex = new RegExp("[?&]" + key + "=([^&#]*)");
     var qs = regex.exec(window.location.href);
     if (qs == null) {
-      return default_
+      var qs2 = regex.exec(Tools.getParentUrl());
+      return qs2 == null ? default_ : qs2[1];
     } else {
       return qs[1]
     }
 };
 
+Tools.getParentUrl = function() {
+	var url = (window.location != window.parent.location) ? document.referrer: document.location;
+	return url;
+};
 
 
 /**
@@ -230,10 +235,14 @@ $(document).ready(function() {
     $('#grid').css("height", aBodyHeight);
 
     function onGameSelected(aElement) {
-        var aGameIframe = $('#game_iframe');
         //Write the correct portal param on the url
         var game_url = aElement.attr('game-url').replace("portal=osom", "portal=" + Tools.getQueryString('portal', 'osom'));
-        aGameIframe.attr("src", game_url);
+        return loadIframe(game_url);
+    }
+    
+    function loadIframe(game_url) {
+    	var aGameIframe = $('#game_iframe');
+    	aGameIframe.attr("src", game_url);
 
         $(document).scrollTop(0);
 
@@ -260,14 +269,30 @@ $(document).ready(function() {
             aGameIframe.css("height", aHeight);
         });
     }
-
+    
     function loadLogo() {
-        var logo = document.getElementById('portal-logo');
-        if (logo) {
-            var portal = Tools.getQueryString('portal', '@demo');
-            var logo_path = 'https://s3.amazonaws.com/gcn-static-assets/uploaded/assets/portal/' + portal + '.png';
-            logo.src = logo_path;
-        }
+        var portal = Tools.getQueryString('portal', '@demo');
+        var logo_path = 'https://s3.amazonaws.com/gcn-static-assets/uploaded/assets/portal/' + portal + '.png';
+        document.getElementById('portal-logo').src = logo_path;
+    }
+    
+    /**
+     * Load a game if there are query params present.
+     */
+    function loadGame() {
+    	var game_id = Tools.getQueryString('game_id', '');
+    	if (game_id != "") {
+    	    //Get any url game
+    	    var url = $($('.selectable_game')[0]).attr('game-url')
+    	    	.replace("portal=osom", "portal=" + Tools.getQueryString('portal', 'osom'))
+    	    	.replace(/Game\/.*/, "Game/" + game_id);
+    	    	
+    	    var level_id = Tools.getQueryString('level_id', '');
+    	    if (level_id) {
+    	    	url += '/Level/' + level_id;
+    	    }
+    	    loadIframe(url);
+    	}
     }
 
     var aSelectableGames = $('.selectable_game');
@@ -277,5 +302,6 @@ $(document).ready(function() {
     });
     
     loadLogo();
+    loadGame();
 
 });
