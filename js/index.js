@@ -231,6 +231,9 @@ $(document).ready(function() {
 
     var mFirstGameLoad = false;
 
+    var aBodyHeight = $('body').height();
+    $('#grid').css("height", aBodyHeight);
+
     function onGameSelected(aElement) {
         //Write the correct portal param on the url
         var game_url = aElement.attr('game-url').replace("portal=osom", "portal=" + Tools.getQueryString('portal', 'osom'));
@@ -245,8 +248,26 @@ $(document).ready(function() {
 
         if (mFirstGameLoad == false) {
             mFirstGameLoad = true;
-            aGameIframe.animate({height: 640}, 500);
+            var aWidth = aGameIframe.width();
+
+            var aWidthPercent = (aWidth * 100) / 1136;
+            var aHeight = (aWidthPercent * 640) / 100;
+
+            aGameIframe.animate({height: aHeight}, 500);
+
+            var aNewGridHeight = aBodyHeight - aHeight;
+
+            $('#grid').css("height", aNewGridHeight);
         }
+
+        aGameIframe.resize(function(){
+            var aWidth = aGameIframe.width();
+
+            var aWidthPercent = (aWidth * 100) / 1136;
+            var aHeight = (aWidthPercent * 640) / 100;
+
+            aGameIframe.css("height", aHeight);
+        });
     }
     
     function loadLogo() {
