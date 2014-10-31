@@ -286,13 +286,14 @@ $(document).ready(function() {
     	var game_id = Tools.getQueryString('game_id', '');
         if (game_id == "") {
             //Load a game by default
-            game_id = "game_trivia_53164bec6e845068286088";
+            game_id = typeof random_game != "undefined" ? random_game : "game_trivia_53164bec6e845068286088";
         }
     	if (game_id != "") {
     	    //Get any url game
     	    var url = $($('.selectable_game')[0]).attr('game-url')
     	    	.replace("portal=osom", "portal=" + Tools.getQueryString('portal', 'osom'))
-    	    	.replace(/Game\/.*/, "Game/" + game_id);
+    	    	.replace(/Game\/.*/, "Game/" + game_id)
+                .replace(/game_id=.*/, "game_id=" + game_id);
     	    	
     	    var level_id = Tools.getQueryString('level_id', '');
     	    if (level_id) {
