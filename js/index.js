@@ -284,6 +284,10 @@ $(document).ready(function() {
      */
     function loadGame() {
     	var game_id = Tools.getQueryString('game_id', '');
+        if (game_id == "") {
+            //Load a game by default
+            game_id = "game_trivia_53164bec6e845068286088";
+        }
     	if (game_id != "") {
     	    //Get any url game
     	    var url = $($('.selectable_game')[0]).attr('game-url')
