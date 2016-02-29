@@ -3,8 +3,22 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Open sans';
+    font-family: 'Lato';
 }
+
+h1.gcn{
+    font-size: 34px !important;
+    font-family: 'Lato' !important;
+    font-weight: normal !important;
+}
+
+h2.gcn{
+
+    margin-top: 20px !important;
+    margin-left: 10px !important;
+    margin-bottom: 10px !important
+}
+
 
 p, div {
     font-family: 'Open sans';
@@ -19,6 +33,8 @@ p, div {
 .game-item {
     margin-bottom: 25px;
 }
+
+
 
 
 footer {
@@ -38,7 +54,7 @@ footer {
     border:2px solid #F5F3F3;
     max-width:335px;
     min-height: 94px;
-    padding:0 10px;
+    padding:0 3px;
     position:relative;
     margin-top: -2px;
     cursor: pointer;
@@ -48,16 +64,49 @@ footer {
     float:right;
     margin-right: 0px;
     margin-top: 7px;
+    margin-left: 10px;
 }
 
 .title-item {
-    font-size: 1em;
+    font-size: 14.2px;
     font-weight: bold;
     color: #4C4C4C;
 }
 
 .subtitle-item {
-    font-size: 0.8em;
+    font-size: 12px;
+}
+
+.featured-item {
+    font-size: 14px;
+    padding-top: 10px !important;
+    margin-top: 0px !important;
+}
+
+.featured-item p{
+    margin-top: 0px !important;
+}
+
+.featured-padding{
+    padding-left:20px;
+}
+
+a:link {
+    color: #333;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #333;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    text-decoration: none;
 }
 
 .navbar {

@@ -232,11 +232,35 @@ $(document).ready(function() {
     var mFirstGameLoad = false;
 
     var aBodyHeight = $('body').height();
+
+    var myWidth = 0, myHeight = 0;
+    if( typeof( window.innerWidth ) == 'number' ) {
+        //Non-IE
+        myWidth = window.innerWidth;
+        myHeight = window.innerHeight;
+    } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+        //IE 6+ in 'standards compliant mode'
+        myWidth = document.documentElement.clientWidth;
+        myHeight = document.documentElement.clientHeight;
+    } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+        //IE 4 compatible
+        myWidth = document.body.clientWidth;
+        myHeight = document.body.clientHeight;
+
+    }
+
+    var aBodyHeight =  $(document).outerHeight();
+
     $('#grid').css("height", aBodyHeight);
 
     function onGameSelected(aElement) {
         //Write the correct portal param on the url
-        var game_url = aElement.attr('game-url').replace("portal=osom", "portal=" + Tools.getQueryString('portal', 'osom'));
+        var portal = mainPortalId;
+        if(portal == null)
+        {
+            portal = Tools.getQueryString('portal', 'osom');
+        }
+        var game_url = aElement.attr('game-url').replace("portal=osom", "portal=" + portal);
         return loadIframe(game_url);
     }
     
@@ -282,7 +306,11 @@ $(document).ready(function() {
 
     function loadLogo() {
 
-        var portal = Tools.getQueryString('portal', '@demo');
+        var portal = mainPortalId;
+        if(portal == null)
+        {
+         portal = Tools.getQueryString('portal', '@demo');
+        }
         var logo_path = 'https://s3.amazonaws.com/gcn-static-assets/uploaded/assets/portal/' + portal + '.png';
         var logo = document.getElementById('portal-logo');
         if (logo) {
@@ -310,6 +338,11 @@ $(document).ready(function() {
     	    if (level_id) {
     	    	url += '/Level/' + level_id;
     	    }
+
+            if(url.indexOf('://dev') != -1 || url.indexOf('localhost') != -1 ){
+                //DEV
+                var url = url.replace(/p.html/, "");
+            }
     	    loadIframe(url);
     	}
     }
