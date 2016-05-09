@@ -222,6 +222,34 @@ Tools.getParentUrl = function() {
 	return url;
 };
 
+Tools.getWindowSize = function() {
+    var myWidth = 0, myHeight = 0;
+    if( typeof( window.innerWidth ) == 'number' ) {
+        //Non-IE
+        myWidth = window.innerWidth;
+        myHeight = window.innerHeight;
+    } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+        //IE 6+ in 'standards compliant mode'
+        myWidth = document.documentElement.clientWidth;
+        myHeight = document.documentElement.clientHeight;
+    } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+        //IE 4 compatible
+        myWidth = document.body.clientWidth;
+        myHeight = document.body.clientHeight;
+
+    }
+    return[myWidth, myHeight];
+};
+
+Tools.isMobileSize = function() {
+    if(MobileBrowserDetect.iPad()){
+        return true;
+    }
+    var size = Tools.getWindowSize();
+    var max_width = 1024;
+    var max_height = 768;
+    return (size[0] < max_width) || (size[1] <= max_height);
+};
 
 /**
  * Created by Diego on 8/14/14.
@@ -268,19 +296,25 @@ $(document).ready(function() {
     	var aGameIframe = $('#game_iframe');
     	aGameIframe.attr("src", game_url);
 
+
         $(document).scrollTop(0);
 
         if (mFirstGameLoad == false) {
             mFirstGameLoad = true;
             var aWidth = aGameIframe.width();
-
             var aWidthPercent = (aWidth * 100) / 1136;
-            var aHeight = (aWidthPercent * 640) / 100;
 
+            if(game_url.indexOf("crossword") > -1 && MobileBrowserDetect.any() == true && Tools.isMobileSize()){
+                var aHeight = (aWidthPercent * 862) / 100;
+            }else{
+
+                var aHeight = (aWidthPercent * 640) / 100;
+            }
             aGameIframe.animate({height: aHeight}, 500);
 
             var aNewGridHeight = aBodyHeight - aHeight;
 
+            aGameIframe.css("width", aWidth);
             $('#grid').css("height", aNewGridHeight);
         }
 
@@ -288,7 +322,12 @@ $(document).ready(function() {
             var aWidth = aGameIframe.width();
 
             var aWidthPercent = (aWidth * 100) / 1136;
-            var aHeight = (aWidthPercent * 640) / 100;
+            if(aGameIframe.game_url.indexOf("crossword") > -1 && MobileBrowserDetect.any() == true && Tools.isMobileSize()){
+                var aHeight = (aWidthPercent * 862) / 100;
+            }else{
+
+                var aHeight = (aWidthPercent * 640) / 100;
+            }
 
             aGameIframe.css("height", aHeight);
         });
